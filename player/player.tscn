@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://cu0ldijsqkqng"]
+
+[ext_resource type="Script" uid="uid://bosdtcfsdxpj2" path="res://player/daima/player.gd" id="1_oul6g"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_6x06p"]
+size = Vector2(18, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6x06p"]
+size = Vector2(18, 48)
+
+[node name="Player" type="CharacterBody2D" unique_id=2070456406]
+position = Vector2(-17, -103)
+script = ExtResource("1_oul6g")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1940420465]
+position = Vector2(17.999939, -2.000122)
+scale = Vector2(6.2222223, -4.520833)
+texture = SubResource("PlaceholderTexture2D_6x06p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=983724440]
+position = Vector2(20.999939, -2.000122)
+scale = Vector2(6.2222223, -4.520833)
+shape = SubResource("RectangleShape2D_6x06p")
+debug_color = Color(0.9587253, 0.9727017, 0.99999994, 0.41960785)
