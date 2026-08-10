@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cu0ldijsqkqng"]
 
 [ext_resource type="Script" uid="uid://bosdtcfsdxpj2" path="res://player/daima/player.gd" id="1_oul6g"]
+[ext_resource type="Script" uid="uid://cnumph6u6j1rq" path="res://player/juesexinxi/00_player_state.gd" id="2_rkbax"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_6x06p"]
 size = Vector2(18, 48)
@@ -22,3 +23,11 @@ position = Vector2(20.999939, -2.000122)
 scale = Vector2(6.2222223, -4.520833)
 shape = SubResource("RectangleShape2D_6x06p")
 debug_color = Color(0.9587253, 0.9727017, 0.99999994, 0.41960785)
+
+[node name="Node" type="Node" parent="." unique_id=662907594]
+
+[node name="Idie" type="Node" parent="Node" unique_id=860429983]
+script = ExtResource("2_rkbax")
+
+[node name="Run" type="Node" parent="Node" unique_id=946032865]
+script = ExtResource("2_rkbax")
