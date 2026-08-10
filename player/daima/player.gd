@@ -1,27 +1,39 @@
 class_name Player extends CharacterBody2D
 
 #region //获取玩家状态的变量定义
+
+
+
 #创建一个保存playerstate的数据结构类型
 var states:Array[PlayerState]
 #下列代码获取是把获取的第一个值给到current_state，第一个值返回的是玩家当前状态
 var current_state : PlayerState:
 	get :return states.front()
-
+#var current_state : PlayerState:
+	#get:
+		#if states.is_empty():
+			#return null
+		#return states.front()
 #获取玩家的上一个状态，是states列表的第二个位置当中
 var previous_state : PlayerState:
 	get :return states[1]
-
+#var previous_state : PlayerState:
+	#get:
+		#if states.size() < 2:
+			#return null
+		#return states[1]
 #endregion
-
 
 #region //常用变量的定义
 #方向变量，可以让我们来确定玩家方向并且可以通过改变变量值来让玩家往不同的方向移动
 var direction : Vector2 = Vector2.ZERO
 #设置中里变量
-var gravity : float= 980
+var gravity : float = 980
 
 #endregion
 
+@onready var idle: PlayerStateIdle = %Idle
+@onready var run: PlayerStateRun = %Run
 
 
 
@@ -29,25 +41,27 @@ func _ready() -> void:
 	initialize_states()
 	pass
 
-
 func _process(delta: float) -> void:
+	#print("yes")
+	update_driction()
 	change_state( current_state.process( delta ) )
 	pass
 
-
-func _physics_process(delta: float) -> void:
-	change_state( current_state.physics_process( delta ) )
-	
+func _physics_process( delta: float) -> void:
+	#print("no")
+	velocity.y += gravity * delta
+	move_and_slide()
+	change_state( current_state.physics_process( delta ) )	
 	pass
 
 #初始化并获取各种状态
 func initialize_states()->void:
-	states =[]
-	for c in $Node.get_children():
+	states = []
+	for c in $states.get_children():
 		if c is PlayerState:
 			states.append( c )
 			c.player = self
-			
+			print(c)
 	#通过遍历来执行当状态机里面需要初始化内容时的代码也就是init函数		
 	if states.size()==0:
 		return
@@ -55,6 +69,10 @@ func initialize_states()->void:
 		sate.init()
 	change_state(current_state)
 	current_state.enter()
+	$Label.text = current_state.name
+	
+	#$Label.text = current_state.name
+	
 	#print( states )
 	
 #用来传入我想更改的状态参数，因此我们需要设置一个自己专属的传参		
@@ -73,8 +91,17 @@ func change_state(new_state:PlayerState) -> void:
 	#通过控制状态数组的长度来实现去掉多余无用的状态信息只保留前三种及分别为当前状态，过去状态以及再以前的状态
 	states.resize( 3 )
 	pass
-	
 
 func _unhandled_input(event: InputEvent) -> void:
+	if current_state == null:
+		return
 	change_state(current_state.handle_input(event))
-	  
+
+#获取玩家位置信息和玩家输入信息并更改玩家位置
+func update_driction() ->void:
+	#var pr_diriction : Vector2 = direction
+	#direction = Input.get_vector("left","right","up","down")
+	var axix_x = Input.get_axis("right","left")
+	var axix_y = Input.get_axis("up","down")
+	direction = Vector2(axix_x,axix_y)
+	pass

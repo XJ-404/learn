@@ -81,4 +81,4 @@ visible = false
 shape = SubResource("RectangleShape2D_c7qd2")
 
 [node name="Player" parent="." unique_id=2070456406 instance=ExtResource("1_37kl0")]
-position = Vector2(116, 625)
+position = Vector2(637, 175)
