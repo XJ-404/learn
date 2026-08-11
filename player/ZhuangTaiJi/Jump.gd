@@ -1,7 +1,6 @@
 @icon("res://player/ZhuangTaiJi/state.svg")
+class_name PlayerStateJump extends PlayerState
 
-
-class_name PlayerStateRun extends PlayerState
 #region ///
 #var player : CharacterBody2D
 #var next_state : PlayerState
@@ -16,7 +15,9 @@ func init() -> void:
 
 #每次进入该状态时调用的函数，会发生什么
 func enter()->void:
-	print("enter",name)
+	#print("enter",name)
+	player.velocity.y -= 1.5*player.jump_velocity
+	pass
 	
 #当退出状态时会调用那个函数会发生什么？
 
@@ -25,16 +26,23 @@ func exit()->void:
 #处理当某个按键被按下或者释放时的操作
 
 func handle_input( _event : InputEvent ) ->PlayerState:
+	if _event.is_action_released("up"):
+		player.velocity.y *=0.5
+		return fall
 	return next_state
 
 func process( _delta: float) -> PlayerState:
-	if player.direction.x ==0:
-		print("该触发idel了！\n")
-		return %Idle
+	#if player.direction.x == 0 and player.direction.y ==0:
+		#player.velocity.x = 0
+		#player.velocity.y = 0
+		#return %Idle
 	return next_state
 
 func physics_process( _delta: float) -> PlayerState:
-	player.velocity.x = player.direction.x*-100
-	#player.velocity.y = player.direction.y*-100
-	 
+	if player.is_on_floor():
+		return idle
+	elif player.velocity.y >=0 :
+		return fall
+	player.velocity.x = player.direction.x * player.move_speed
+	
 	return next_state

@@ -2,26 +2,20 @@ class_name Player extends CharacterBody2D
 
 #region //获取玩家状态的变量定义
 
-
-
 #创建一个保存playerstate的数据结构类型
 var states:Array[PlayerState]
 #下列代码获取是把获取的第一个值给到current_state，第一个值返回的是玩家当前状态
 var current_state : PlayerState:
 	get :return states.front()
-#var current_state : PlayerState:
-	#get:
-		#if states.is_empty():
-			#return null
-		#return states.front()
+
 #获取玩家的上一个状态，是states列表的第二个位置当中
 var previous_state : PlayerState:
 	get :return states[1]
-#var previous_state : PlayerState:
-	#get:
-		#if states.size() < 2:
-			#return null
-		#return states[1]
+
+#endregion
+#region //保存导出变量
+@export var move_speed : float = 100
+@export var  jump_velocity :float = 450
 #endregion
 
 #region //常用变量的定义
@@ -32,23 +26,18 @@ var gravity : float = 980
 
 #endregion
 
-@onready var idle: PlayerStateIdle = %Idle
-@onready var run: PlayerStateRun = %Run
-
-
-
 func _ready() -> void:
 	initialize_states()
 	pass
 
 func _process(delta: float) -> void:
-	#print("yes")
+
 	update_driction()
 	change_state( current_state.process( delta ) )
 	pass
 
 func _physics_process( delta: float) -> void:
-	#print("no")
+	#update_driction()
 	velocity.y += gravity * delta
 	move_and_slide()
 	change_state( current_state.physics_process( delta ) )	
@@ -69,12 +58,7 @@ func initialize_states()->void:
 		sate.init()
 	change_state(current_state)
 	current_state.enter()
-	$Label.text = current_state.name
-	
 	#$Label.text = current_state.name
-	
-	#print( states )
-	
 #用来传入我想更改的状态参数，因此我们需要设置一个自己专属的传参		
 func change_state(new_state:PlayerState) -> void:
 	#先确认是不是有效状态，防止一直传入闲置状态来消耗资源
@@ -90,7 +74,9 @@ func change_state(new_state:PlayerState) -> void:
 	current_state.enter()
 	#通过控制状态数组的长度来实现去掉多余无用的状态信息只保留前三种及分别为当前状态，过去状态以及再以前的状态
 	states.resize( 3 )
-	pass
+	$Label.text = current_state.name
+	
+	
 
 func _unhandled_input(event: InputEvent) -> void:
 	if current_state == null:
@@ -99,9 +85,10 @@ func _unhandled_input(event: InputEvent) -> void:
 
 #获取玩家位置信息和玩家输入信息并更改玩家位置
 func update_driction() ->void:
-	#var pr_diriction : Vector2 = direction
-	#direction = Input.get_vector("left","right","up","down")
-	var axix_x = Input.get_axis("right","left")
+
+	var axix_x = Input.get_axis("left","right")
 	var axix_y = Input.get_axis("up","down")
 	direction = Vector2(axix_x,axix_y)
+	#if axix_x == 0 and axix_y == 0:
+		#direction = Vector2.ZERO
 	pass

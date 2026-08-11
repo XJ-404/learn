@@ -1,10 +1,9 @@
 @icon("res://player/ZhuangTaiJi/state.svg")
+class_name PlayerStateFall extends PlayerState
 
-class_name PlayerStateIdle extends PlayerState
 #region ///
 #var player : CharacterBody2D
 #var next_state : PlayerState
-
 
 
 #endregion
@@ -18,6 +17,7 @@ func init() -> void:
 func enter()->void:
 	#print("enter",name)
 	pass
+	
 #当退出状态时会调用那个函数会发生什么？
 
 func exit()->void:
@@ -28,11 +28,12 @@ func handle_input( _event : InputEvent ) ->PlayerState:
 	return next_state
 
 func process( _delta: float) -> PlayerState:
-	if player.direction.x !=0:
-		print("该触发run了！\n")
-		return %Run
+
 	return next_state
 
 func physics_process( _delta: float) -> PlayerState:
-	
+	if player.is_on_floor():
+		return idle
+	player.velocity.x = player.direction.x * player.move_speed
+
 	return next_state
