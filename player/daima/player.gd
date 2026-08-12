@@ -1,5 +1,7 @@
 class_name Player extends CharacterBody2D
 
+const DEBUG_JUMP_GAODU = preload("uid://xghdo4oqbvwx")
+
 #region //获取玩家状态的变量定义
 
 #创建一个保存playerstate的数据结构类型
@@ -24,6 +26,7 @@ var direction : Vector2 = Vector2.ZERO
 #设置中里变量
 var gravity : float = 980
 
+
 #endregion
 
 func _ready() -> void:
@@ -38,6 +41,7 @@ func _process(delta: float) -> void:
 
 func _physics_process( delta: float) -> void:
 	#update_driction()
+
 	velocity.y += gravity * delta
 	move_and_slide()
 	change_state( current_state.physics_process( delta ) )	
@@ -91,4 +95,13 @@ func update_driction() ->void:
 	direction = Vector2(axix_x,axix_y)
 	#if axix_x == 0 and axix_y == 0:
 		#direction = Vector2.ZERO
+	pass
+
+func add_debug_indicator(color : Color = Color.RED ) ->void:
+	var d :Node2D = DEBUG_JUMP_GAODU.instantiate()
+	get_tree().root.add_child( d )
+	d.global_position = global_position
+	d.modulate = color
+	await get_tree().create_timer(3.0).timeout
+	d.queue_free()
 	pass

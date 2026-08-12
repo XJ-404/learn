@@ -13,24 +13,6 @@ size = Vector2(18, 48)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6x06p"]
 size = Vector2(10.285715, 30.082952)
 
-[sub_resource type="Gradient" id="Gradient_qjkh3"]
-colors = PackedColorArray(0.9577182, 0.9577182, 0.9577181, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_boad6"]
-gradient = SubResource("Gradient_qjkh3")
-width = 1
-height = 1
-
-[sub_resource type="Gradient" id="Gradient_g6k8r"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_rgyib"]
-gradient = SubResource("Gradient_g6k8r")
-width = 5
-height = 3
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(1, 0.5)
-
 [node name="Player" type="CharacterBody2D" unique_id=2070456406]
 script = ExtResource("1_oul6g")
 move_speed = 450.0
@@ -74,16 +56,3 @@ offset_bottom = -107.0
 theme_override_font_sizes/font_size = 27
 text = "lable"
 horizontal_alignment = 1
-
-[node name="Debug_jump_gaodu" type="Node2D" parent="." unique_id=1410772048]
-
-[node name="Sprite2D" type="Sprite2D" parent="Debug_jump_gaodu" unique_id=1843119377]
-modulate = Color(1, 1, 1, 0.96862745)
-position = Vector2(-1.4551915e-11, 252.0061)
-scale = Vector2(63.999996, 8.000189)
-texture = SubResource("GradientTexture2D_boad6")
-offset = Vector2(2.861023e-06, -31.999998)
-
-[node name="Sprite2D2" type="Sprite2D" parent="Debug_jump_gaodu" unique_id=1439874569]
-modulate = Color(1, 1, 1, 0.8980392)
-texture = SubResource("GradientTexture2D_rgyib")

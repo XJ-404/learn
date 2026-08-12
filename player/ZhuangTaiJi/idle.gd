@@ -25,8 +25,8 @@ func exit()->void:
 func handle_input( _event : InputEvent ) ->PlayerState:
 	if _event.is_action_pressed("up"):
 		return jump 
-	if _event.is_action_pressed("down"):
-		return fall 	
+	#if _event.is_action_pressed("down"):
+		#return fall 	
 	return next_state
 
 func process( _delta: float) -> PlayerState:
