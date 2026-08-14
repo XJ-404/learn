@@ -5,13 +5,17 @@
 [ext_resource type="Script" uid="uid://cehcubycrt32e" path="res://player/ZhuangTaiJi/run.gd" id="2_rkbax"]
 [ext_resource type="Script" uid="uid://c45as8bglvquq" path="res://player/ZhuangTaiJi/Jump.gd" id="4_qjkh3"]
 [ext_resource type="Script" uid="uid://5usxykv2f7eg" path="res://player/ZhuangTaiJi/Fall.gd" id="5_g6k8r"]
+[ext_resource type="Script" uid="uid://csvxl67cghb18" path="res://player/ZhuangTaiJi/Crouch.gd" id="6_g6k8r"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_6x06p"]
 resource_local_to_scene = true
-size = Vector2(18, 48)
+size = Vector2(19, 49)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6x06p"]
-size = Vector2(10.285715, 30.082952)
+size = Vector2(20.550465, 60.606064)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g6k8r"]
+size = Vector2(20.55, 25.75758)
 
 [node name="Player" type="CharacterBody2D" unique_id=2070456406]
 script = ExtResource("1_oul6g")
@@ -35,24 +39,33 @@ script = ExtResource("4_qjkh3")
 unique_name_in_owner = true
 script = ExtResource("5_g6k8r")
 
+[node name="Crouch" type="Node" parent="states" unique_id=259997047]
+unique_name_in_owner = true
+script = ExtResource("6_g6k8r")
+
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1940420465]
-position = Vector2(-0.08913344, -9.094947e-13)
-scale = Vector2(-3.543341, 2.164383)
+position = Vector2(-0.5263157, -47.510204)
+scale = Vector2(2.9473686, 1.979592)
 texture = SubResource("PlaceholderTexture2D_6x06p")
 centered = false
-offset = Vector2(-8.999996, -47.999996)
+offset = Vector2(-10, -25)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=983724440]
-position = Vector2(9.536743e-07, -68)
-scale = Vector2(6.2222223, -4.520833)
+[node name="CollisionShape_Stand" type="CollisionShape2D" parent="." unique_id=983724440]
+position = Vector2(-1.9999954, -60.000008)
+scale = Vector2(2.725, -1.98)
 shape = SubResource("RectangleShape2D_6x06p")
-debug_color = Color(0.9587253, 0.9727017, 0.99999994, 0.41960785)
+
+[node name="CollisionShape_Crouch" type="CollisionShape2D" parent="." unique_id=435531742]
+position = Vector2(-1, -25.499998)
+scale = Vector2(2.725, -1.98)
+shape = SubResource("RectangleShape2D_g6k8r")
+disabled = true
 
 [node name="Label" type="Label" parent="." unique_id=22844078]
-offset_left = -56.0
-offset_top = -144.0
-offset_right = 50.0
-offset_bottom = -107.0
-theme_override_font_sizes/font_size = 27
+offset_left = -45.0
+offset_top = -126.0
+offset_right = 43.0
+offset_bottom = -89.0
+theme_override_font_sizes/font_size = 21
 text = "lable"
 horizontal_alignment = 1

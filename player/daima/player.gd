@@ -1,6 +1,14 @@
 class_name Player extends CharacterBody2D
 
 const DEBUG_JUMP_GAODU = preload("uid://xghdo4oqbvwx")
+ 
+#region   ///保存已经准备就绪的变量
+@onready var sprite: Sprite2D = $Sprite2D
+@onready var collision_shape_stand: CollisionShape2D = $CollisionShape_Stand
+@onready var collision_shape_crouch: CollisionShape2D = $CollisionShape_Crouch
+
+
+#endregion
 
 #region //获取玩家状态的变量定义
 
@@ -54,7 +62,7 @@ func initialize_states()->void:
 		if c is PlayerState:
 			states.append( c )
 			c.player = self
-			print(c)
+			#print(c)
 	#通过遍历来执行当状态机里面需要初始化内容时的代码也就是init函数		
 	if states.size()==0:
 		return

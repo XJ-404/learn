@@ -30,12 +30,17 @@ func handle_input( _event : InputEvent ) ->PlayerState:
 	return next_state
 
 func process( _delta: float) -> PlayerState:
-	if player.direction.x != 0 or player.direction.y != 0 :
-		return %Run
+	if player.direction.x != 0 :
+		return run
+	elif player.direction.y>0.5:
+		return crouch
 	return next_state
 
 func physics_process( _delta: float) -> PlayerState:
 	#print("Idle状态 - 当前方向: ", player.direction.x)  # 调试	
+	player.velocity.x =0
+	#player.velocity.x -= player.velocity.x * 0.8 * _delta
+
 
 
 	return next_state

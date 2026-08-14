@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://cu0ldijsqkqng" path="res://player/player.tscn" id="1_37kl0"]
 
 [sub_resource type="Gradient" id="Gradient_mf4mk"]
-offsets = PackedFloat32Array(0, 0.0072115385, 1)
-colors = PackedColorArray(1, 1, 1, 1, 0.050480783, 0.050480783, 0.050480783, 1, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0.69471157)
+colors = PackedColorArray(0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_c7qd2"]
 gradient = SubResource("Gradient_mf4mk")
@@ -12,34 +12,34 @@ width = 32
 height = 32
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c7qd2"]
-size = Vector2(31.884972, 31.997253)
+size = Vector2(32.37966, 32.086468)
 
 [node name="playerground" type="Node2D" unique_id=401594718]
 position = Vector2(8, 1)
 
 [node name="di4" type="Sprite2D" parent="." unique_id=1505287576]
-position = Vector2(360, 583)
-rotation = 3.1415927
-scale = Vector2(10.582434, 6.8884797)
+position = Vector2(256.082, 729.22656)
+rotation = 0.7853982
+scale = Vector2(7.1731634, 5.04354)
 texture = SubResource("GradientTexture2D_c7qd2")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="di4" unique_id=388818642]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="di4/StaticBody2D" unique_id=295374663]
 visible = false
-position = Vector2(0.44015503, -0.04144287)
-scale = Vector2(0.9999999, 0.99999976)
+position = Vector2(0.19580078, 0.03820038)
+scale = Vector2(0.9999999, 0.9999997)
 shape = SubResource("RectangleShape2D_c7qd2")
 
 [node name="di5" type="Sprite2D" parent="." unique_id=478947846]
 position = Vector2(113.99999, 670.5)
-scale = Vector2(7.375, 4.9687505)
+scale = Vector2(7.375001, 4.9687505)
 texture = SubResource("GradientTexture2D_c7qd2")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="di5" unique_id=1242521011]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="di5/StaticBody2D" unique_id=382580199]
-position = Vector2(-0.19286346, 0.16744995)
+position = Vector2(-0.18983078, 0.04322815)
 shape = SubResource("RectangleShape2D_c7qd2")
 
 [node name="di" type="Sprite2D" parent="." unique_id=1866833822]
