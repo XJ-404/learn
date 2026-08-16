@@ -15,6 +15,9 @@ var next_state : PlayerState
 @onready var jump: PlayerStateJump = %Jump
 @onready var fall: PlayerStateFall = %Fall
 @onready var crouch: PlayerStateCrouch = %Crouch
+@onready var dan_xiang_ping_tai: RayCast2D = %DanXiangPingTai
+
+
 
 
 #endregion

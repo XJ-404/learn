@@ -52,6 +52,20 @@ texture = SubResource("GradientTexture2D_c7qd2")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="di/StaticBody2D" unique_id=456578043]
 shape = SubResource("RectangleShape2D_c7qd2")
 
+[node name="di6" type="Sprite2D" parent="." unique_id=742216876]
+light_mask = 2
+position = Vector2(160.00003, 375)
+scale = Vector2(9.500001, 0.99999934)
+texture = SubResource("GradientTexture2D_c7qd2")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="di6" unique_id=388135011]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="di6/StaticBody2D" unique_id=812960825]
+shape = SubResource("RectangleShape2D_c7qd2")
+one_way_collision = true
+
 [node name="di2" type="Sprite2D" parent="." unique_id=1742898408]
 position = Vector2(777.00006, 689)
 scale = Vector2(5.187497, 3.2500055)
@@ -109,3 +123,4 @@ shape = SubResource("RectangleShape2D_c7qd2")
 
 [node name="Player" parent="." unique_id=2070456406 instance=ExtResource("1_37kl0")]
 position = Vector2(578, 729)
+collision_mask = 3

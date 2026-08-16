@@ -7,6 +7,12 @@ const DEBUG_JUMP_GAODU = preload("uid://xghdo4oqbvwx")
 @onready var collision_shape_stand: CollisionShape2D = $CollisionShape_Stand
 @onready var collision_shape_crouch: CollisionShape2D = $CollisionShape_Crouch
 
+@onready var idle: PlayerStateIdle = %Idle
+@onready var run: PlayerStateRun = %Run
+@onready var jump: PlayerStateJump = %Jump
+@onready var fall: PlayerStateFall = %Fall
+@onready var crouch: PlayerStateCrouch = %Crouch
+@onready var dan_xiang_ping_tai: RayCast2D = %DanXiangPingTai
 
 #endregion
 

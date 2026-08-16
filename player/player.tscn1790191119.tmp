@@ -38,10 +38,12 @@ script = ExtResource("4_qjkh3")
 [node name="Fall" type="Node" parent="states" unique_id=1133120566]
 unique_name_in_owner = true
 script = ExtResource("5_g6k8r")
+coyot_time = null
 
 [node name="Crouch" type="Node" parent="states" unique_id=259997047]
 unique_name_in_owner = true
 script = ExtResource("6_g6k8r")
+derictioan_speed = null
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1940420465]
 position = Vector2(-0.5263157, -47.510204)
@@ -74,4 +76,3 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 target_position = Vector2(0, 18)
 collision_mask = 2
-hit_from_inside = true

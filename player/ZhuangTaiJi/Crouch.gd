@@ -20,6 +20,8 @@ func enter()->void:
 	#player.sprite.scale.x = 2.725
 	player.sprite.scale.y = 1.083
 	player.sprite.position.y = -25.0
+
+
 	pass
 #当退出状态时会调用那个函数会发生什么？
 
@@ -34,9 +36,10 @@ func exit()->void:
 
 func handle_input( _event : InputEvent ) ->PlayerState:
 	if _event.is_action_pressed("up"):
+		if player.dan_xiang_ping_tai.is_colliding() == true:
+			player.position.y += 5		#positiong才是改变玩家位置的参数	
+			return fall
 		return jump 
-	#if _event.is_action_pressed("down"):
-		#return fall 	
 	return next_state
 
 func process( _delta: float) -> PlayerState:
@@ -47,5 +50,5 @@ func process( _delta: float) -> PlayerState:
 func physics_process( _delta: float) -> PlayerState:
 	#print("Idle状态 - 当前方向: ", player.direction.x)  # 调试	
 	player.velocity.x -= player.velocity.x * derictioan_speed * _delta
-	print(player.velocity.x)
+	#print(player.velocity.x)
 	return next_state
