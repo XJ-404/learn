@@ -15,7 +15,8 @@ func init() -> void:
 
 #每次进入该状态时调用的函数，会发生什么
 func enter()->void:
-	#print("enter",name)
+	player.animation_player.play( "run" )
+
 	pass
 	
 #当退出状态时会调用那个函数会发生什么？
@@ -43,7 +44,6 @@ func process( _delta: float) -> PlayerState:
 
 func physics_process( _delta: float) -> PlayerState:
 	player.velocity.x = player.direction.x * player.move_speed
-	#player.velocity.y = player.direction.y * player.move_speed
 	if player.is_on_floor() == false:
 		return fall
 	return next_state

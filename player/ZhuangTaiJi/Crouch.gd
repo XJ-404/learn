@@ -14,12 +14,12 @@ func init() -> void:
 
 #每次进入该状态时调用的函数，会发生什么
 func enter()->void:
-	#print("sudu",player.velocity.x)
+	player.animation_player.play( "crouch" )
+
 	player.collision_shape_stand.disabled = true
 	player.collision_shape_crouch.disabled = false
-	#player.sprite.scale.x = 2.725
-	player.sprite.scale.y = 1.083
-	player.sprite.position.y = -25.0
+
+
 
 
 	pass
@@ -28,9 +28,7 @@ func enter()->void:
 func exit()->void:
 	player.collision_shape_stand.disabled = false
 	player.collision_shape_crouch.disabled = true
-	player.sprite.scale.x = -2.947
-	player.sprite.scale.y = -1.98
-	player.sprite.position.y = -47.51
+
 	pass
 #处理当某个按键被按下或者释放时的操作
 

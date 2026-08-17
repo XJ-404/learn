@@ -15,9 +15,9 @@ func init() -> void:
 
 #每次进入该状态时调用的函数，会发生什么
 func enter()->void:
-	#print("enter",name)
-	#print(player.states[0],player.states[1],player.states[2])
-	player.add_debug_indicator(Color.GREEN)
+	player.animation_player.play( "jump" )
+	player.animation_player.pause()      #暂停动画播放，通过插帧播放的方式来实现根据速度播放对应动画效果
+	#player.add_debug_indicator(Color.GREEN)
 	player.velocity.y = -1.5*player.jump_velocity
 
 	pass
@@ -25,7 +25,7 @@ func enter()->void:
 #当退出状态时会调用那个函数会发生什么？
 
 func exit()->void:
-	player.add_debug_indicator(Color.YELLOW)
+	#player.add_debug_indicator(Color.YELLOW)
 	
 	pass
 #处理当某个按键被按下或者释放时的操作
@@ -37,7 +37,7 @@ func handle_input( _event : InputEvent ) ->PlayerState:
 	return next_state
 
 func process( _delta: float) -> PlayerState:
-
+	set_jump_frame()
 	return next_state
 
 func physics_process( _delta: float) -> PlayerState:
@@ -49,3 +49,11 @@ func physics_process( _delta: float) -> PlayerState:
 	player.velocity.x = player.direction.x * player.move_speed
 	
 	return next_state
+
+#暂停动画播放，通过插帧播放的方式来实现根据速度播放对应动画效果
+func set_jump_frame() -> void:
+	var frame : float = remap(player.velocity.y,-player.velocity.y,0.0,0,0.5)
+	player.animation_player.seek(frame,true)
+	
+	pass
+ 

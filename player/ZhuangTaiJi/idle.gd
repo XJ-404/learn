@@ -14,7 +14,7 @@ func init() -> void:
 
 #每次进入该状态时调用的函数，会发生什么
 func enter()->void:
-	#print("enter",name)
+	player.animation_player.play( "idle" )
 	pass
 #当退出状态时会调用那个函数会发生什么？
 
@@ -28,7 +28,7 @@ func handle_input( _event : InputEvent ) ->PlayerState:
 	#if _event.is_action_pressed("down"):
 #
 			#return fall	
-		pass		
+		pass
 	return next_state
 
 func process( _delta: float) -> PlayerState:

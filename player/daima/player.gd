@@ -6,13 +6,9 @@ const DEBUG_JUMP_GAODU = preload("uid://xghdo4oqbvwx")
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var collision_shape_stand: CollisionShape2D = $CollisionShape_Stand
 @onready var collision_shape_crouch: CollisionShape2D = $CollisionShape_Crouch
-
-@onready var idle: PlayerStateIdle = %Idle
-@onready var run: PlayerStateRun = %Run
-@onready var jump: PlayerStateJump = %Jump
-@onready var fall: PlayerStateFall = %Fall
-@onready var crouch: PlayerStateCrouch = %Crouch
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var dan_xiang_ping_tai: RayCast2D = %DanXiangPingTai
+
 
 #endregion
 
@@ -30,8 +26,9 @@ var previous_state : PlayerState:
 
 #endregion
 #region //保存导出变量
-@export var move_speed : float = 100
+@export var move_speed : float = 450
 @export var  jump_velocity :float = 450
+@export var max_fall_velocity : float = 600
 #endregion
 
 #region //常用变量的定义
@@ -57,6 +54,7 @@ func _physics_process( delta: float) -> void:
 	#update_driction()
 
 	velocity.y += gravity * delta
+	velocity.y = clampf(velocity.y,-1000,max_fall_velocity)
 	move_and_slide()
 	change_state( current_state.physics_process( delta ) )	
 	pass
@@ -103,12 +101,16 @@ func _unhandled_input(event: InputEvent) -> void:
 
 #获取玩家位置信息和玩家输入信息并更改玩家位置
 func update_driction() ->void:
-
+	var previous_direction : Vector2 = direction
 	var axix_x = Input.get_axis("left","right")
 	var axix_y = Input.get_axis("up","down")
 	direction = Vector2(axix_x,axix_y)
-	#if axix_x == 0 and axix_y == 0:
-		#direction = Vector2.ZERO
+	if previous_direction != direction :
+		if direction.x < 0:
+			sprite.flip_h = true
+		elif direction.x > 0:
+			sprite.flip_h = false
+
 	pass
 
 func add_debug_indicator(color : Color = Color.RED ) ->void:

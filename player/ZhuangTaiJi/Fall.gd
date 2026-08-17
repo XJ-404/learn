@@ -17,7 +17,8 @@ func init() -> void:
 func enter()->void:
 	#print("enter",name)
 	#player.add_debug_indicator(Color.GREEN)
-
+	player.animation_player.play( "jump" )
+	player.animation_player.pause()	
 	if player.previous_state == player.current_state:
 		coyot_timer = 0
 	else :	
@@ -40,6 +41,7 @@ func handle_input( _event : InputEvent ) ->PlayerState:
 
 func process( _delta: float) -> PlayerState:
 	coyot_timer -= _delta
+	set_jump_frame()
 	return next_state
 
 func physics_process( _delta: float) -> PlayerState:
@@ -49,3 +51,9 @@ func physics_process( _delta: float) -> PlayerState:
 	player.velocity.x = player.direction.x * player.move_speed
 
 	return next_state
+
+
+func set_jump_frame() -> void:
+	var frame : float = remap(player.velocity.y,0,player.max_fall_velocity,0.5,1.0)
+	player.animation_player.seek(frame,true)
+	
